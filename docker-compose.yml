@@ -1,0 +1,142 @@
+services:
+  mlflow_db:
+    image: postgres:15
+    container_name: mlflow_db
+    environment:
+      POSTGRES_USER: ${MLFLOW_DB_USER}
+      POSTGRES_PASSWORD: ${MLFLOW_DB_PASSWORD}
+      POSTGRES_DB: ${MLFLOW_DB_NAME}
+    ports:
+      - "${MLFLOW_DB_PORT}:5432"
+    volumes:
+      - mlflow_db_data:/var/lib/postgresql/data
+    networks:
+      - mlops_net
+
+  penguins_db:
+    image: postgres:15
+    container_name: penguins_db
+    environment:
+      POSTGRES_USER: ${DATA_DB_USER}
+      POSTGRES_PASSWORD: ${DATA_DB_PASSWORD}
+      POSTGRES_DB: ${DATA_DB_NAME}
+    ports:
+      - "${DATA_DB_PORT}:5432"
+    volumes:
+      - penguins_db_data:/var/lib/postgresql/data
+      - ./init_sql:/docker-entrypoint-initdb.d
+    networks:
+      - mlops_net
+
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+    ports:
+      - "${MINIO_PORT}:9000"
+      - "${MINIO_CONSOLE_PORT}:9001"
+    volumes:
+      - minio_data:/data
+    networks:
+      - mlops_net
+
+  minio_client:
+    image: minio/mc:latest
+    container_name: minio_client
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      sleep 10;
+      mc alias set local http://minio:9000 ${MINIO_ROOT_USER} ${MINIO_ROOT_PASSWORD};
+      mc mb local/${MLFLOW_BUCKET} --ignore-existing;
+      exit 0;
+      "
+    networks:
+      - mlops_net
+
+  mlflow:
+    build:
+      context: ./mlflow
+      dockerfile: Dockerfile
+    container_name: mlflow
+    depends_on:
+      - mlflow_db
+      - minio
+      - minio_client
+    ports:
+      - "${MLFLOW_PORT}:5000"
+    environment:
+      AWS_ACCESS_KEY_ID: ${MINIO_ROOT_USER}
+      AWS_SECRET_ACCESS_KEY: ${MINIO_ROOT_PASSWORD}
+      MLFLOW_S3_ENDPOINT_URL: http://minio:9000
+      GIT_PYTHON_REFRESH: quiet
+    command: >
+      mlflow server
+      --host 0.0.0.0
+      --port 5000
+      --allowed-hosts "localhost:*,127.0.0.1:*,mlflow,mlflow:5000"
+      --cors-allowed-origins "http://localhost:*,http://127.0.0.1:*"
+      --backend-store-uri postgresql://${MLFLOW_DB_USER}:${MLFLOW_DB_PASSWORD}@mlflow_db:5432/${MLFLOW_DB_NAME}
+      --artifacts-destination s3://${MLFLOW_BUCKET}
+    networks:
+      - mlops_net
+
+  jupyter:
+    build:
+      context: ./jupyter
+      dockerfile: Dockerfile
+    container_name: jupyter_lab
+    depends_on:
+      - penguins_db
+      - mlflow
+    ports:
+      - "${JUPYTER_PORT}:8888"
+    volumes:
+      - ./notebooks:/app/notebooks
+    environment:
+      MLFLOW_TRACKING_URI: http://mlflow:5000
+      AWS_ACCESS_KEY_ID: ${MINIO_ROOT_USER}
+      AWS_SECRET_ACCESS_KEY: ${MINIO_ROOT_PASSWORD}
+      MLFLOW_S3_ENDPOINT_URL: http://minio:9000
+    command: >
+      jupyter lab
+      --ip=0.0.0.0
+      --port=8888
+      --no-browser
+      --allow-root
+      --ServerApp.token=
+      --ServerApp.password=
+    networks:
+      - mlops_net
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: penguins_api
+    depends_on:
+      - mlflow
+    ports:
+      - "${API_PORT}:8000"
+    environment:
+      MLFLOW_TRACKING_URI: http://mlflow:5000
+      AWS_ACCESS_KEY_ID: ${MINIO_ROOT_USER}
+      AWS_SECRET_ACCESS_KEY: ${MINIO_ROOT_PASSWORD}
+      MLFLOW_S3_ENDPOINT_URL: http://minio:9000
+    command: >
+      uvicorn app:app
+      --host 0.0.0.0
+      --port 8000
+    networks:
+      - mlops_net
+
+volumes:
+  mlflow_db_data:
+  penguins_db_data:
+  minio_data:
+
+networks:
+  mlops_net:

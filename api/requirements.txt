@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+pydantic
+mlflow==3.10.1
+boto3
+psycopg2-binary
+scikit-learn
+pandas
+numpy
