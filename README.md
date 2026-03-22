@@ -50,3 +50,88 @@ mlops_penguins/
     ├── penguins_v1.csv
     ├── penguins_training_mlflow.ipynb
     └── penguins_experiment_results.csv
+```
+## Variables de entorno
+
+```bash
+MLFLOW_DB_USER=mlflow
+MLFLOW_DB_PASSWORD=mlflow123
+MLFLOW_DB_NAME=mlflow_db
+MLFLOW_DB_PORT=5433
+
+DATA_DB_USER=penguins
+DATA_DB_PASSWORD=penguins123
+DATA_DB_NAME=penguins_db
+DATA_DB_PORT=5434
+
+MINIO_ROOT_USER=minio
+MINIO_ROOT_PASSWORD=minio123
+MINIO_PORT=9000
+MINIO_CONSOLE_PORT=9001
+MLFLOW_BUCKET=mlflow
+
+MLFLOW_PORT=5000
+JUPYTER_PORT=8888
+API_PORT=8000
+
+```
+## Levantamiento de la solución
+
+```bash
+docker compose up -d --build
+```
+
+## Accesos a la solución
+MLflow UI:
+```bash
+http://localhost:5000
+```
+MinIO Console:
+```bash
+http://localhost:9001
+```
+JupyterLab:
+```bash
+http://localhost:8888
+```
+FastAPI Docs:
+```bash
+http://localhost:8000/docs
+```
+
+# Bases de datos utilizadas
+1. Base de datos para metadata de MLflow
+    Se usa una instancia dedicada de PostgreSQL para almacenar:
+   
+        -experimentos
+        -runs
+        -parámetros
+        -métricas
+        -registro de modelos
+3. Base de datos para datos del proyecto
+
+    Se usa otra instancia de PostgreSQL para almacenar:
+   
+        -penguins_raw
+        -penguins_processed
+
+# Carga y procesamiento de datos
+
+Tabla penguins_raw
+
+- Contiene el dataset original cargado desde CSV.
+
+Tabla penguins_processed
+
+- Contiene el dataset listo para modelado:
+
+    - sin columna id
+    - sin nulos
+    - con variables numéricas listas para entrenamiento
+
+# Modelos entrenados
+Se entrenaron mínimo tres modelos de clasificación:
+
+- SVM
+- RandomForestClassifier
+- LogisticRegression
