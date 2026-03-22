@@ -1,4 +1,4 @@
-# 🐧 MLOps Penguins Classification
+# 🐧 MLOps Penguins Classification - MLFlow
 
 ## 📑 Tabla de contenido
 
@@ -27,6 +27,9 @@ La solución está compuesta por los siguientes servicios:
 - **JupyterLab**: ambiente de experimentación y entrenamiento
 - **FastAPI**: API de inferencia que carga el mejor modelo desde MLflow Registry
 
+<p align="center">
+  <img src="images/Arquitectura.png" alt="arquitectura" width="1000"/>
+</p
 ---
 
 ## Servicios desplegados
