@@ -190,6 +190,10 @@ Cada ejecución registró en MLflow:
 - modelo entrenado como artifact
 
 <p align="center">
+  <img src="images/experimentos_jupyter.png" alt="mejor" width="600"/>
+</p
+    
+<p align="center">
   <img src="images/registro_en_mlflow.png" alt="experimento" width="600"/>
 </p
 
