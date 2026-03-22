@@ -99,6 +99,10 @@ API_PORT=8000
 ```bash
 docker compose up -d --build
 ```
+<p align="center">
+  <img src="images/levantar_servicios.png" alt="levantar" width="600"/>
+</p
+    
 ---
 
 ## Accesos a la solución
@@ -185,10 +189,18 @@ Cada ejecución registró en MLflow:
 - f1_score
 - modelo entrenado como artifact
 
+<p align="center">
+  <img src="images/registro_en_mlflow.png" alt="experimento" width="600"/>
+</p
+
 con esto se registra el mejor modelo en:
 ```bash
     penguins-best-model
 ```
+<p align="center">
+  <img src="images/mejor_jupyter.png" alt="mejor" width="600"/>
+</p
+
 ---
 
 ## Almacenamiento de artifacts en MinIO
@@ -198,6 +210,11 @@ MLflow usa MinIO como artifact store para guardar:
 - Modelos entrenados
 - Artifacts de experimentación
 - Archivos asociados a los runs
+- 
+<p align="center">
+  <img src="images/registro_en_minio.png" alt="minio" width="600"/>
+</p
+
 ---
 
 ## API de inferencia
@@ -213,6 +230,10 @@ MLflow usa MinIO como artifact store para guardar:
   "year": 2007
 }
 ```
+<p align="center">
+  <img src="images/api_predictor.png" alt="api" width="600"/>
+</p
+    
 - Salida tipo:
 ```bash
 {
@@ -220,6 +241,9 @@ MLflow usa MinIO como artifact store para guardar:
   "species_name": "Adelie"
 }
 ```
+<p align="center">
+  <img src="images/resultado_api.png" alt="resultado" width="600"/>
+</p
 ---
 
 ## 👥 Colaboradores
