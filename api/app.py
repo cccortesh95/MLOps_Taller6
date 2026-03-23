@@ -29,7 +29,6 @@ SPECIES_MAP = {
 
 
 class PenguinFeatures(BaseModel):
-    """Características morfológicas de un pingüino para predicción de especie."""
 
     island: int = Field(default=0, ge=0, le=2, description="Isla (0=Biscoe, 1=Dream, 2=Torgersen)")
     bill_length_mm: float = Field(default=43.9, ge=30.0, le=60.0, description="Largo del pico en mm")
@@ -57,13 +56,11 @@ class PenguinFeatures(BaseModel):
 
 
 def load_model():
-    """Construye el URI del modelo y lo carga desde el registro de MLflow."""
     model_uri = f"models:/{MODEL_NAME}/{MODEL_STAGE_OR_ALIAS}"
     return mlflow.pyfunc.load_model(model_uri)
 
 
 def try_load_model():
-    """Intenta cargar el modelo. Retorna el modelo o None si falla."""
     try:
         return load_model()
     except Exception:
