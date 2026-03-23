@@ -293,6 +293,10 @@ Cada campo tiene valores por defecto y validación de rangos. Si un valor está 
 ```
 ---
 
+<p align="center">
+  <img src="images/resultado_api_nomodel.png" alt="resultado sin modelo" width="600"/>
+</p>
+
 ## Evidencia de funcionamiento
 
 Captura del flujo completo en ejecución — servicios levantados, modelo registrado y API respondiendo:
