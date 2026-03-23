@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 """
 API de inferencia para clasificación de especies de pingüinos.
 
@@ -7,6 +8,8 @@ La carga del modelo es lazy: si el modelo no está disponible,
 la API inicia igual y responde HTTP 503 en /predict.
 """
 
+=======
+>>>>>>> 27bf40243915fcc861d8b7aa7de900d652dd8589
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 import mlflow.pyfunc
@@ -29,8 +32,11 @@ SPECIES_MAP = {
 
 
 class PenguinFeatures(BaseModel):
+<<<<<<< HEAD
     """Características morfológicas de un pingüino para predicción de especie."""
 
+=======
+>>>>>>> 27bf40243915fcc861d8b7aa7de900d652dd8589
     island: int = Field(default=0, ge=0, le=2, description="Isla (0=Biscoe, 1=Dream, 2=Torgersen)")
     bill_length_mm: float = Field(default=43.9, ge=30.0, le=60.0, description="Largo del pico en mm")
     bill_depth_mm: float = Field(default=17.2, ge=13.0, le=22.0, description="Profundidad del pico en mm")
@@ -38,6 +44,7 @@ class PenguinFeatures(BaseModel):
     body_mass_g: int = Field(default=4200, ge=2700, le=6300, description="Masa corporal en g")
     sex: int = Field(default=0, ge=0, le=1, description="Sexo (0=hembra, 1=macho)")
     year: int = Field(default=2008, ge=2007, le=2009, description="Año de observación")
+<<<<<<< HEAD
 
     model_config = {
         "json_schema_extra": {
@@ -54,6 +61,8 @@ class PenguinFeatures(BaseModel):
             ]
         }
     }
+=======
+>>>>>>> 27bf40243915fcc861d8b7aa7de900d652dd8589
 
 
 def load_model():
@@ -63,7 +72,10 @@ def load_model():
 
 
 def try_load_model():
+<<<<<<< HEAD
     """Intenta cargar el modelo. Retorna el modelo o None si falla."""
+=======
+>>>>>>> 27bf40243915fcc861d8b7aa7de900d652dd8589
     try:
         return load_model()
     except Exception:
@@ -74,6 +86,14 @@ def try_load_model():
 def startup_event():
     tracking_uri = os.getenv("MLFLOW_TRACKING_URI", "http://mlflow:5000")
     mlflow.set_tracking_uri(tracking_uri)
+<<<<<<< HEAD
+=======
+
+
+@app.get("/")
+def root():
+    return {"message": "Penguins API running"}
+>>>>>>> 27bf40243915fcc861d8b7aa7de900d652dd8589
 
 
 @app.get("/health")
