@@ -195,6 +195,12 @@ Con **1000 usuarios**, el sistema volvió a saturarse. Este experimento demuestr
 
 ## Experimento 3
 
+se levantan servicios con 2 api
+
+<p align="center">
+  <img src="images/subida_2api.png" alt="arquitectura" width="1000"/>
+</p>
+
 **Configuración**
 - 2 réplicas
 - 0.5 CPU / 512 MB por réplica
