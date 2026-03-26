@@ -1,4 +1,4 @@
-# 🐧 MLOps Penguins Classification - MLFlow
+# 🐧 MLOps Penguins Classification - MLFlow - Locust
 
 ## 📑 Tabla de contenido
 
