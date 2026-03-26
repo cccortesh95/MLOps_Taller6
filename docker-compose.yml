@@ -113,12 +113,14 @@ services:
     networks:
       - mlops_net
   api:
-    build:
-      context: ./api
-      dockerfile: Dockerfile
+    image: kamilokor/mlops:api
     container_name: penguins_api
     depends_on:
       - mlflow
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
     ports:
       - "${API_PORT}:8000"
     environment:
