@@ -53,17 +53,17 @@ mlops_penguins/
 ├── .env
 ├── docker-compose.yml
 ├── init_sql/
-│   └── penguins_init.sql
+�?  └── penguins_init.sql
 ├── jupyter/
-│   ├── Dockerfile
-│   └── requirements.txt
+�?  ├── Dockerfile
+�?  └── requirements.txt
 ├── mlflow/
-│   ├── Dockerfile
-│   └── requirements.txt
+�?  ├── Dockerfile
+�?  └── requirements.txt
 ├── api/
-│   ├── Dockerfile
-│   ├── requirements.txt
-│   └── app.py
+�?  ├── Dockerfile
+�?  ├── requirements.txt
+�?  └── app.py
 └── notebooks/
     ├── penguins_v1.csv
     ├── penguins_load.ipynb
@@ -250,13 +250,13 @@ Cada campo tiene valores por defecto y validación de rangos. Si un valor está 
 
 | Campo | Tipo | Rango | Default | Descripción |
 |-------|------|-------|---------|-------------|
-| `island` | int | 0–2 | 0 | Isla (0=Biscoe, 1=Dream, 2=Torgersen) |
-| `bill_length_mm` | float | 30.0–60.0 | 43.9 | Largo del pico en mm |
-| `bill_depth_mm` | float | 13.0–22.0 | 17.2 | Profundidad del pico en mm |
-| `flipper_length_mm` | int | 170–230 | 200 | Largo de aleta en mm |
-| `body_mass_g` | int | 2700–6300 | 4200 | Masa corporal en g |
-| `sex` | int | 0–1 | 0 | Sexo (0=hembra, 1=macho) |
-| `year` | int | 2007–2009 | 2008 | Año de observación |
+| `island` | int | 0�? | 0 | Isla (0=Biscoe, 1=Dream, 2=Torgersen) |
+| `bill_length_mm` | float | 30.0�?0.0 | 43.9 | Largo del pico en mm |
+| `bill_depth_mm` | float | 13.0�?2.0 | 17.2 | Profundidad del pico en mm |
+| `flipper_length_mm` | int | 170�?30 | 200 | Largo de aleta en mm |
+| `body_mass_g` | int | 2700�?300 | 4200 | Masa corporal en g |
+| `sex` | int | 0�? | 0 | Sexo (0=hembra, 1=macho) |
+| `year` | int | 2007�?009 | 2008 | Año de observación |
 
 ### Ejemplo de request
 
@@ -306,6 +306,5 @@ Cada campo tiene valores por defecto y validación de rangos. Si un valor está 
 
 ## 👥 Colaboradores
 
-- 🧑‍💻 **Camilo Cortés** — [![GitHub](https://img.shields.io/badge/GitHub-@cccortesh95-181717?logo=github)](https://github.com/cccortesh95)
-- 🧑‍💻 **Johnny Castañeda** — [![GitHub](https://img.shields.io/badge/GitHub-@Johnny--Castaneda--Marin-181717?logo=github)](https://github.com/Johnny-Castaneda-Marin)
-
+- 🧑‍�?**Camilo Cortés** �?[![GitHub](https://img.shields.io/badge/GitHub-@cccortesh95-181717?logo=github)](https://github.com/cccortesh95)
+- 🧑‍�?**Johnny Castañeda** �?[![GitHub](https://img.shields.io/badge/GitHub-@Johnny--Castaneda--Marin-181717?logo=github)](https://github.com/Johnny-Castaneda-Marin)
