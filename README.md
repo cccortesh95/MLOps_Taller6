@@ -113,6 +113,13 @@ docker compose up -d --build
 <p align="center">
   <img src="images/levantar_servicios.png" alt="levantar" width="600"/>
 </p>
+
+---
+# Importacion desde docker HUB
+
+<p align="center">
+  <img src="images/subida_2api.png" alt="arquitectura" width="1000"/>
+</p>
     
 ---
 
