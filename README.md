@@ -147,6 +147,14 @@ Las métricas observadas fueron:
 | 500  | 1 | 0.5 | 512M | 12.9 | 37000 | 0 | estable |
 | 1000 | 1 | 0.5 | 512M | 0 | 0 | 0 | saturado |
 
+<p align="center">
+  <img src="images/experimento1_1.png" alt="arquitectura" width="1000"/>
+</p>
+
+<p align="center">
+  <img src="images/experimentio1_2.png" alt="arquitectura" width="1000"/>
+</p>
+
 ### Análisis del experimento 1
 
 Con una sola réplica y recursos moderados, la API logró atender una carga de **500 usuarios** de forma estable, alcanzando **12.9 RPS**, aunque con una latencia p95 elevada de **37 segundos**.
@@ -168,6 +176,14 @@ Al incrementar la carga a **1000 usuarios**, el servicio entró en saturación. 
 |---:|---:|---:|---:|---:|---:|---:|---|
 | 500  | 1 | 0.5 | 512M | 6.4 | 83000 | 0 | estable |
 | 1000 | 1 | 0.5 | 512M | 5.4 | 62000 | 0 | saturado |
+
+<p align="center">
+  <img src="images/experimento2_1.png" alt="arquitectura" width="1000"/>
+</p>
+
+<p align="center">
+  <img src="images/experimento2_2.png" alt="arquitectura" width="1000"/>
+</p>
 
 ### Análisis del experimento 2
 
@@ -192,6 +208,18 @@ Con **1000 usuarios**, el sistema volvió a saturarse. Este experimento demuestr
 
 en el tercer punto se rompio a 2140
 
+<p align="center">
+  <img src="images/experimento3_1.png" alt="arquitectura" width="1000"/>
+</p>
+
+<p align="center">
+  <img src="images/experimento3_2.png" alt="arquitectura" width="1000"/>
+</p>
+
+<p align="center">
+  <img src="images/experimento3_3.png" alt="arquitectura" width="1000"/>
+</p>
+
 ### Análisis del experimento 3
 
 Al pasar de **1 a 2 réplicas**, se observó una mejora clara en la capacidad del sistema:
@@ -201,6 +229,13 @@ Al pasar de **1 a 2 réplicas**, se observó una mejora clara en la capacidad de
 - el servicio logró escalar hasta **5000 usuarios**, aunque en ese punto ya se consideró saturado
 
 Esto muestra que la replicación sí mejora la capacidad total del servicio, ya que permite distribuir la carga entre múltiples instancias de la API.
+
+Revision del flujo de las 2 API
+
+<p align="center">
+  <img src="images/trafico2_api.png" alt="arquitectura" width="1000"/>
+</p>
+
 
 ---
 
