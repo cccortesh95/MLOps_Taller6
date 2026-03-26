@@ -115,7 +115,7 @@ docker compose up -d --build
 </p>
 
 ---
-# Importacion desde docker HUB
+# Importación desde docker HUB
 
 <p align="center">
   <img src="images/subida_2api.png" alt="arquitectura" width="1000"/>
