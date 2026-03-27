@@ -56,22 +56,30 @@ La solución está compuesta por los siguientes servicios:
 mlops_penguins/
 ├── .env
 ├── docker-compose.yml
+├── README.md
+├── api/
+│   ├── app.py
+│   ├── Dockerfile
+│   └── requirements.txt
+├── images/
+│   └── *.png (capturas de los experimentos, arquitectura y resultados)
 ├── init_sql/
 │   └── penguins_init.sql
 ├── jupyter/
 │   ├── Dockerfile
 │   └── requirements.txt
+├── locus/
+│   ├── docker-compose.yml
+│   ├── Dockerfile.locust
+│   ├── locustfile.py
+│   └── requirements-locust.txt
 ├── mlflow/
 │   ├── Dockerfile
 │   └── requirements.txt
-├── api/
-│   ├── Dockerfile
-│   ├── requirements.txt
-│   └── app.py
 └── notebooks/
-    ├── penguins_v1.csv
+    ├── penguins_experiment_results.csv
     ├── penguins_load.ipynb
-    └── penguins_experiment_results.csv
+    └── penguins_v1.csv
 ```
 ---
 
