@@ -177,8 +177,6 @@ Al incrementar la carga a **1000 usuarios**, el servicio entró en saturación. 
 - 0.25 CPU / 256 MB
 - carga en bloques de 10 usuarios
 
-> **Nota:** en la tabla original registrada, los valores consignados en CPU y memoria aparecen como `0.5` y `512M`. Si este escenario corresponde realmente a `0.25 CPU / 256 MB`, se recomienda corregir esos valores en la tabla final del informe.
-
 | Usuarios | Réplicas API | CPU límite | Memoria límite | RPS | p95 ms | Errores % | Resultado |
 |---:|---:|---:|---:|---:|---:|---:|---|
 | 500  | 1 | 0.5 | 512M | 6.4 | 83000 | 0 | estable |
