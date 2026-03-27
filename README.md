@@ -128,6 +128,10 @@ docker compose up -d --build
 # Importación desde docker HUB
 
 <p align="center">
+  <img src="images/docker_hub.jpeg" alt="arquitectura" width="1000"/>
+</p>
+
+<p align="center">
   <img src="images/subida_2api.png" alt="arquitectura" width="1000"/>
 </p>
     
