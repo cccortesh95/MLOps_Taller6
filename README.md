@@ -28,7 +28,8 @@ La solución está compuesta por los siguientes servicios:
 - **MinIO**: almacena artifacts y modelos generados por MLflow
 - **JupyterLab**: ambiente de experimentación y entrenamiento
 - **FastAPI**: API de inferencia que carga el mejor modelo desde MLflow Registry
-
+- **Locust**: Genera pruebas de carga sobre la API
+  
 <p align="center">
   <img src="images/Arquitectura.png" alt="arquitectura" width="1000"/>
 </p>
@@ -45,6 +46,7 @@ La solución está compuesta por los siguientes servicios:
 | `mlflow` | Tracking server y model registry | `5000` |
 | `jupyter` | Notebook de experimentación | `8888` |
 | `api` | API de inferencia | `8000` |
+| `locust` | Herramienta de pruebas de carga | `8089` |
 
 ---
 
